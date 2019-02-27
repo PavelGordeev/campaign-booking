@@ -2,12 +2,17 @@ package com.gordeev.campaignbooking.dao.jdbc;
 
 import com.gordeev.campaignbooking.dao.CampaignDao;
 import com.gordeev.campaignbooking.dao.jdbc.mapper.CampaignResultSetExtractor;
+import com.gordeev.campaignbooking.dao.jdbc.mapper.CampaignSummaryRowMapper;
+import com.gordeev.campaignbooking.dao.jdbc.util.QueryGenerator;
 import com.gordeev.campaignbooking.entity.Ad;
 import com.gordeev.campaignbooking.entity.Campaign;
+import com.gordeev.campaignbooking.entity.CampaignSummary;
 import com.gordeev.campaignbooking.entity.Status;
+import com.gordeev.campaignbooking.request.SummaryRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -21,8 +26,6 @@ import java.util.Map;
 
 @Repository
 public class JdbcCampaignDao implements CampaignDao {
-    // ADS.ad_id,
-    // TODO: Move properties/spring beans
     private static final String GET_CAMPAIGN_BY_ID_SQL = "SELECT  campaings.*, ads.*," +
             "GROUP_CONCAT(platform_ads.platform_id SEPARATOR ',') as ad_platform_ids " +
             "FROM campaings " +
@@ -37,13 +40,18 @@ public class JdbcCampaignDao implements CampaignDao {
 
     private static final CampaignResultSetExtractor CAMPAIGN_RESULT_SET_EXTRACTOR = new CampaignResultSetExtractor();
 
+    private static final CampaignSummaryRowMapper CAMPAIGN_SUMMARY_ROW_MAPPER = new CampaignSummaryRowMapper();
+
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    private int countOnPage;
+
     @Autowired
-    public JdbcCampaignDao(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public JdbcCampaignDao(NamedParameterJdbcTemplate namedParameterJdbcTemplate, @Value("${summary.count.on.page:5}") int countOnPage) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+        this.countOnPage = countOnPage;
     }
 
     @Override
@@ -99,10 +107,38 @@ public class JdbcCampaignDao implements CampaignDao {
         logger.debug("Remove campaign with id = {}", id);
         long startTime = System.currentTimeMillis();
 
-//        deleteCampaignAds(id);
         namedParameterJdbcTemplate.update(DELETE_CAMPAIGN_SQL, new MapSqlParameterSource("id", id));
 
         logger.debug("Execution took: {} ms", System.currentTimeMillis() - startTime);
+    }
+
+    @Override
+    public List<CampaignSummary> findSummary(SummaryRequest summaryRequest) {
+        logger.debug("Get summaries from db for request: {}", summaryRequest);
+        long startTime = System.currentTimeMillis();
+
+        String query = QueryGenerator.createfindSummaryQuery(summaryRequest, countOnPage);
+
+        logger.debug("Generated query: {}", query);
+        MapSqlParameterSource parametersForSummary = createParametersForSummary(summaryRequest);
+
+        List<CampaignSummary> summaries = namedParameterJdbcTemplate.query(query, parametersForSummary, CAMPAIGN_SUMMARY_ROW_MAPPER);
+
+        logger.debug("Execution took: {} ms", System.currentTimeMillis() - startTime);
+        return summaries;
+    }
+
+    private MapSqlParameterSource createParametersForSummary(SummaryRequest summaryRequest) {
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        if(summaryRequest.getFilterName() != null) {
+            parameters.addValue("filterName", summaryRequest.getFilterName());
+        }
+
+        if(summaryRequest.getFilterStatus() != null) {
+            parameters.addValue("filterStatus", summaryRequest.getFilterStatus().getId());
+        }
+
+        return parameters;
     }
 
     private MapSqlParameterSource createCommonParameters(Campaign campaign) {

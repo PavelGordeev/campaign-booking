@@ -3,7 +3,7 @@ package com.gordeev.campaignbooking.web.controller;
 import com.gordeev.campaignbooking.entity.Campaign;
 import com.gordeev.campaignbooking.service.CampaignService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,17 +16,17 @@ public class CampaignController {
         this.campaignService = campaignService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Campaign findById(@PathVariable int id) {
         return campaignService.findById(id);
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Campaign create(@RequestBody Campaign campaign) {
         return campaignService.create(campaign);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Campaign update(@RequestBody Campaign campaign, @PathVariable int id) {
         campaign.setId(id);
         return campaignService.update(campaign);

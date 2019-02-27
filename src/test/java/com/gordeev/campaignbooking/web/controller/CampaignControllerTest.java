@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -86,18 +84,15 @@ public class CampaignControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(content))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is(3)))
                 .andExpect(jsonPath("name", is("First created test Campaign")))
                 .andExpect(jsonPath("status", is("PLANNED")))
                 .andExpect(jsonPath("startDate", is("2019-06-18T00:00:00")))
                 .andExpect(jsonPath("endDate", is("2019-07-18T00:00:00")))
-                .andExpect(jsonPath("ads[0].id", is(5)))
                 .andExpect(jsonPath("ads[0].name", is("first created ad with campaign")))
                 .andExpect(jsonPath("ads[0].status", is("PLANNED")))
                 .andExpect(jsonPath("ads[0].assetUrl", is("asset url")))
                 .andExpect(jsonPath("ads[0].platforms[0]", is("WEB")))
                 .andExpect(jsonPath("ads[0].platforms[1]", is("IOS")))
-                .andExpect(jsonPath("ads[1].id", is(6)))
                 .andExpect(jsonPath("ads[1].name", is("second created ad with campaign")))
                 .andExpect(jsonPath("ads[1].status", is("PLANNED")))
                 .andExpect(jsonPath("ads[1].assetUrl", is("asset url")))

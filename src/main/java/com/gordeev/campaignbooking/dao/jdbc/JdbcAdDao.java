@@ -155,35 +155,6 @@ public class JdbcAdDao implements AdDao {
         logger.debug("Execution took: {} ms", System.currentTimeMillis() - startTime);
     }
 
-
-//    public void updateAdsForCampaign(List<Ad> ads, int campaignId) {
-//        deleteCampaignAds
-//    }
-
-//    private void deleteCampaignAds(int id) {
-//        logger.debug("Delete ads from campaign with id = {}", id);
-//        long startTime = System.currentTimeMillis();
-//
-//        Campaign campaign = findById(id);
-//        List<Ad> ads = campaign.getAds();
-//        for (Ad ad : ads) {
-//            adDao.removeById(ad.getId());
-//        }
-//
-//        logger.debug("Execution took: {} ms", System.currentTimeMillis() - startTime);
-//    }
-
-//    private void addAdsToCampaign(Campaign campaign) {
-//        logger.debug("Add ads {} to campaign with id = {}", campaign.getAds(), campaign.getId());
-//        long startTime = System.currentTimeMillis();
-//
-//        for (Ad ad : campaign.getAds()) {
-//            adDao.create(ad);
-//        }
-//
-//        logger.debug("Execution took: {} ms", System.currentTimeMillis() - startTime);
-//    }
-
     private void addPlatformsToAds(List<Ad> ads) {
         logger.debug("Add platforms to ads {}", ads);
         long startTime = System.currentTimeMillis();

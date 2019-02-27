@@ -10,9 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -91,7 +89,7 @@ public class JdbcAdDaoITest {
         }
 
         verify(mockPlatforms, times(1)).iterator();
-        adDao.findById(5);
+        adDao.findById(9);
     }
 
     @Test

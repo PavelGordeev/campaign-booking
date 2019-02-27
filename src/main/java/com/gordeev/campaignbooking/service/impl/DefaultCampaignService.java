@@ -3,11 +3,12 @@ package com.gordeev.campaignbooking.service.impl;
 import com.gordeev.campaignbooking.dao.CampaignDao;
 import com.gordeev.campaignbooking.entity.Ad;
 import com.gordeev.campaignbooking.entity.Campaign;
+import com.gordeev.campaignbooking.entity.CampaignSummary;
+import com.gordeev.campaignbooking.request.SummaryRequest;
 import com.gordeev.campaignbooking.service.AdService;
 import com.gordeev.campaignbooking.service.CampaignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -54,5 +55,10 @@ public class DefaultCampaignService implements CampaignService {
     @Override
     public void removeById(int id) {
         campaignDao.removeById(id);
+    }
+
+    @Override
+    public List<CampaignSummary> findSummary(SummaryRequest summaryRequest) {
+        return campaignDao.findSummary(summaryRequest);
     }
 }
