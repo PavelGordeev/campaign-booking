@@ -21,14 +21,16 @@ public class QueryGenerator {
     public static String createfindSummaryQuery(SummaryRequest summaryRequest, int countOnPage) {
         StringBuilder query = new StringBuilder(FIND_SUMMARY_SQL_PREFIX);
 
+        if (isFilterPresent(summaryRequest)) {
+            query.append(" WHERE ");
+        }
+
         if (isFilteredByName(summaryRequest)) {
-            query.append(" WHERE c.c_name like '%:filterName%'");
+            query.append("c.c_name like '%:filterName%'");
         }
 
         if (isFilteredByNameAndStatus(summaryRequest)) {
             query.append(" AND ");
-        } else {
-            query.append(" WHERE ");
         }
 
         if (isFilteredByStatus(summaryRequest)) {
@@ -37,7 +39,7 @@ public class QueryGenerator {
 
         query.append(" GROUP BY c.c_id ");
 
-        if (summaryRequest.getSortField() != null && summaryRequest.getSortDirection()!= null) {
+        if (summaryRequest.getSortField() != null && summaryRequest.getSortDirection() != null) {
             query.append(" ORDER BY ");
             query.append(SORT_FIELD_TO_COLUMN_NAME_MAP.get(summaryRequest.getSortField()));
             query.append(" ");
@@ -53,6 +55,10 @@ public class QueryGenerator {
         }
 
         return query.toString();
+    }
+
+    private static boolean isFilterPresent(SummaryRequest summaryRequest) {
+        return isFilteredByName(summaryRequest) || isFilteredByStatus(summaryRequest);
     }
 
     private static boolean isFilteredByNameAndStatus(SummaryRequest summaryRequest) {

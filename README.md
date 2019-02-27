@@ -15,6 +15,10 @@ or
 ```bash
         mvn spring-boot:run
 ```
+or just open the link to app on heroku in your browser:
+```bash
+https://fast-everglades-92385.herokuapp.com/summaries
+```
 Check the stdout to make sure no exceptions are thrown
 Once the application runs you should see something like this
 ```bash
@@ -57,23 +61,23 @@ Returns json data about a single campaign
                   "startDate":"2019-06-18T00:00:00",
                   "endDate":"2019-07-18T00:00:00",
                   "ads":[
-                    	    {
-                  	          "id":1,
-                  	           "name":"first test ad",
-                  	           "status":"PLANNED",
-                  	           "platforms":["WEB","IOS"],
-                  	           "assetUrl":"asset url",
-                  	           "campaignId":1
-                  	        },
-                  	        {
-                  	           "id":2,
-                  	           "name":"second test ad",
-                  	           "status":"PLANNED",
-                  	          "platforms":["ANDROID","IOS"],
-                  	           "assetUrl":"asset2 url",
-                  	           "campaignId":1
-                  	        }
-                  	    ]
+                    	         {
+                  	              "id":1,
+                  	               "name":"first test ad",
+                  	               "status":"PLANNED",
+                  	               "platforms":["WEB","IOS"],
+                  	               "assetUrl":"asset url",
+                  	               "campaignId":1
+                  	          },
+                  	          {
+                  	               "id":2,
+                    	             "name":"second test ad",
+                  	               "status":"PLANNED",
+                  	               "platforms":["ANDROID","IOS"],
+                  	               "assetUrl":"asset2 url",
+                  	               "campaignId":1
+                  	          }
+                  	         ]
                 }
  
 * **Error Response:**
@@ -193,24 +197,24 @@ Returns json data about a created campaign
                     "startDate":"2019-06-18T00:00:00",
                     "endDate":"2019-07-18T00:00:00",
                     "ads":[
-                      	    {
-                    	       "id":1,
-                    	       "name":"first test ad",
-                    	       "status":"PLANNED",
-                    	       "platforms":["WEB","IOS"],
-                    	       "assetUrl":"asset url",
-                    	       "campaignId":1
-                    	    },
-                    	    {
-                    	       "id":2,
-                    	       "name":"second test ad",
-                    	       "status":"PLANNED",
-                    	       "platforms":["ANDROID","IOS"],
-                    	       "assetUrl":"asset2 url",
-                    	        "campaignId":1
-                    	    }
-                    	  ]
-                  }
+                           	    {
+                            	       "id":1,
+                    	               "name":"first test ad",
+                            	       "status":"PLANNED",
+                            	       "platforms":["WEB","IOS"],
+                            	       "assetUrl":"asset url",
+                            	       "campaignId":1
+                    	            },
+                    	            {
+                            	       "id":2,
+                            	       "name":"second test ad",
+                            	       "status":"PLANNED",
+                    	               "platforms":["ANDROID","IOS"],
+                    	               "assetUrl":"asset2 url",
+                    	               "campaignId":1
+                    	            }
+                    	          ]
+                      }
 
 * **Success Response:**
 
@@ -224,24 +228,24 @@ Returns json data about a created campaign
                   "startDate":"2019-06-18T00:00:00",
                   "endDate":"2019-07-18T00:00:00",
                   "ads":[
-                    	    {
-                  	           "id":1,
-                  	           "name":"first test ad",
-                  	           "status":"PLANNED",
-                  	            "platforms":["WEB","IOS"],
-                  	            "assetUrl":"asset url",
-                  	           "campaignId":1
-                  	        },
-                  	        {
-                  	           "id":2,
-                  	           "name":"second test ad",
-                  	           "status":"PLANNED",
-                  	           "platforms":["ANDROID","IOS"],
-                  	           "assetUrl":"asset2 url",
-                  	           "campaignId":1
-                  	        }
-                  	     ]
-                }
+                          	    {
+                  	                   "id":1,
+                  	                   "name":"first test ad",
+                          	           "status":"PLANNED",
+                          	           "platforms":["WEB","IOS"],
+                          	           "assetUrl":"asset url",
+                  	                   "campaignId":1
+                       	        },
+                       	        {
+                          	           "id":2,
+                  	                   "name":"second test ad",
+                  	                   "status":"PLANNED",
+                        	           "platforms":["ANDROID","IOS"],
+                        	           "assetUrl":"asset2 url",
+                        	           "campaignId":1
+                       	        }
+                       	     ]
+                   }
  
 
 **Create an ad**
@@ -304,31 +308,31 @@ Returns json data about a updated campaign
 * **Data Params**
 
   ``` 
-                  {
+                 {
                     "id":1,
                     "name":"First test Campaign",
                     "status":"PLANNED",
                     "startDate":"2019-06-18T00:00:00",
                     "endDate":"2019-07-18T00:00:00",
                     "ads":[
-                        	{
-                        	    "id":1,
-                        	    "name":"first test ad",
-                        	    "status":"PLANNED",
-                        	    "platforms":["WEB","IOS"],
-                        	    "assetUrl":"asset url",
-                        	    "campaignId":1
-                    	    },
-                    	    {
-                        	    "id":2,
-                        	    "name":"second test ad",
-                           	    "status":"PLANNED",
-                        	    "platforms":["ANDROID","IOS"],
-                           	    "assetUrl":"asset2 url",
-                         	    "campaignId":1
-                    	    }
-                    	  ]
-                  }
+                               	{
+                                	    "id":1,
+                                	    "name":"first test ad",
+                        	            "status":"PLANNED",
+                        	            "platforms":["WEB","IOS"],
+                        	            "assetUrl":"asset url",
+                        	            "campaignId":1
+                    	            },
+                    	            {
+                        	            "id":2,
+                        	            "name":"second test ad",
+                           	            "status":"PLANNED",
+                        	            "platforms":["ANDROID","IOS"],
+                           	            "assetUrl":"asset2 url",
+                         	            "campaignId":1
+                    	            }
+                    	          ]
+                       }
 
 * **Success Response:**
 
@@ -342,24 +346,24 @@ Returns json data about a updated campaign
                   "startDate":"2019-06-18T00:00:00",
                   "endDate":"2019-07-18T00:00:00",
                   "ads":[
-                         	{
-                         	    "id":1,
-                        	    "name":"first test ad",
-                        	    "status":"PLANNED",
-                        	    "platforms":["WEB","IOS"],
-                        	    "assetUrl":"asset url",
-                  	            "campaignId":1
-                       	    },
-                    	    {
-                        	    "id":2,
-                  	            "name":"second test ad",
-                  	            "status":"PLANNED",
-                        	    "platforms":["ANDROID","IOS"],
-                  	            "assetUrl":"asset2 url",
-                  	            "campaignId":1
-                  	        }
-                	    ]
-                }
+                         	    {
+                        	        "id":1,
+                        	        "name":"first test ad",
+                        	        "status":"PLANNED",
+                        	        "platforms":["WEB","IOS"],
+                        	        "assetUrl":"asset url",
+                  	              "campaignId":1
+                       	        },
+                    	           {
+                            	    "id":2,
+                      	           "name":"second test ad",
+                      	           "status":"PLANNED",
+                             	    "platforms":["ANDROID","IOS"],
+                      	           "assetUrl":"asset2 url",
+                  	               "campaignId":1
+                  	              }
+                	            ]
+                    }
  
 * **Error Response:**
 

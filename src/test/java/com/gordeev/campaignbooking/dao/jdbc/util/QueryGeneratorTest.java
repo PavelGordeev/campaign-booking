@@ -19,7 +19,7 @@ public class QueryGeneratorTest {
                 .build();
         String summaryQuery = QueryGenerator.createfindSummaryQuery(request, 1);
         assertEquals(FIND_SUMMARY_SQL_PREFIX +
-                " WHERE  GROUP BY c.c_id  OFFSET 0 LIMIT 1", summaryQuery);
+                " GROUP BY c.c_id  OFFSET 0 LIMIT 1", summaryQuery);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class QueryGeneratorTest {
                 .build();
         String summaryQuery = QueryGenerator.createfindSummaryQuery(request, 1);
         assertEquals(FIND_SUMMARY_SQL_PREFIX +
-                " WHERE  GROUP BY c.c_id  ORDER BY c.c_name ASC OFFSET 0 LIMIT 1", summaryQuery);
+                " GROUP BY c.c_id  ORDER BY c.c_name ASC OFFSET 0 LIMIT 1", summaryQuery);
     }
 
     @Test
