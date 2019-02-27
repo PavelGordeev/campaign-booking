@@ -2,6 +2,8 @@ package com.gordeev.campaignbooking.service;
 
 import com.gordeev.campaignbooking.entity.Ad;
 
+import java.util.List;
+
 public interface AdService {
     Ad findById(int id);
 
@@ -10,4 +12,8 @@ public interface AdService {
     Ad update(Ad ad);
 
     void removeById(int id);
+
+    List<Ad> createAdsForCampaign(List<Ad> ads, int campaignId);
+
+    List<Ad> updateAdsForCampaign(List<Ad> ads, int campaignId);
 }

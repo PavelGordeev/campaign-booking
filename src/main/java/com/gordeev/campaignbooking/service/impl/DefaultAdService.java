@@ -6,6 +6,8 @@ import com.gordeev.campaignbooking.service.AdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DefaultAdService implements AdService {
 
@@ -34,5 +36,15 @@ public class DefaultAdService implements AdService {
     @Override
     public void removeById(int id) {
         adDao.removeById(id);
+    }
+
+    @Override
+    public List<Ad> createAdsForCampaign(List<Ad> ads, int campaignId) {
+        return adDao.createAdsForCampaign(ads, campaignId);
+    }
+
+    @Override
+    public List<Ad> updateAdsForCampaign(List<Ad> ads, int campaignId) {
+        return adDao.updateAdsForCampaign(ads, campaignId);
     }
 }

@@ -2,6 +2,7 @@ package com.gordeev.campaignbooking.entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 public class Campaign {
     private int id;
@@ -10,6 +11,13 @@ public class Campaign {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private List<Ad> ads;
+
+    public Campaign() {
+    }
+
+    public Campaign(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;
@@ -59,6 +67,23 @@ public class Campaign {
         this.ads = ads;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Campaign campaign = (Campaign) o;
+        return id == campaign.id &&
+                Objects.equals(name, campaign.name) &&
+                status == campaign.status &&
+                Objects.equals(startDate, campaign.startDate) &&
+                Objects.equals(endDate, campaign.endDate) &&
+                Objects.equals(ads, campaign.ads);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, status, startDate, endDate, ads);
+    }
 
     @Override
     public String toString() {

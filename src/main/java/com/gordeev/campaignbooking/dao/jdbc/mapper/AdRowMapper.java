@@ -1,6 +1,7 @@
 package com.gordeev.campaignbooking.dao.jdbc.mapper;
 
 import com.gordeev.campaignbooking.entity.Ad;
+import com.gordeev.campaignbooking.entity.Campaign;
 import com.gordeev.campaignbooking.entity.Platform;
 import com.gordeev.campaignbooking.entity.Status;
 import org.springframework.jdbc.core.RowMapper;
@@ -21,6 +22,7 @@ public class AdRowMapper implements RowMapper<Ad> {
         ad.setName(resultSet.getString("ad_name"));
         ad.setStatus(Status.getById(resultSet.getInt("ad_status_id")));
         ad.setAssetUrl(resultSet.getString("ad_asset_url"));
+        ad.setCampaign(new Campaign(resultSet.getInt("ad_campaign_id")));
 
         List<Platform> platforms = Arrays.stream(resultSet.getString("ad_platform_ids").split(","))
                 .map(String::trim)

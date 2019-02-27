@@ -9,7 +9,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -20,8 +24,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest
+@Rollback
+@Transactional
 public class JdbcCampaignDaoITest {
 
     private CampaignDao campaignDao;
@@ -47,6 +53,7 @@ public class JdbcCampaignDaoITest {
         firstAd.setStatus(Status.PLANNED);
         firstAd.setPlatforms(Arrays.asList(Platform.WEB, Platform.IOS));
         firstAd.setAssetUrl("asset url");
+        firstAd.setCampaign(new Campaign(1));
 
         Ad secondAd = new Ad();
         secondAd.setId(2);
@@ -54,6 +61,7 @@ public class JdbcCampaignDaoITest {
         secondAd.setStatus(Status.ACTIVE);
         secondAd.setPlatforms(Arrays.asList(Platform.ANDROID, Platform.IOS));
         secondAd.setAssetUrl("asset2 url");
+        secondAd.setCampaign(new Campaign(1));
 
         assertTrue(actualAds.contains(firstAd));
         assertTrue(actualAds.contains(secondAd));

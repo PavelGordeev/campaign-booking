@@ -10,8 +10,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
@@ -23,7 +25,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest
 @Rollback
 @Transactional
@@ -40,6 +42,7 @@ public class JdbcAdDaoITest {
         expectedAd.setStatus(Status.PLANNED);
         expectedAd.setPlatforms(Arrays.asList(Platform.WEB, Platform.IOS));
         expectedAd.setAssetUrl("asset url");
+        expectedAd.setCampaign(new Campaign(1));
 
         // when
         Ad actualAd = adDao.findById(1);
@@ -88,7 +91,7 @@ public class JdbcAdDaoITest {
         }
 
         verify(mockPlatforms, times(1)).iterator();
-        adDao.findById(3);
+        adDao.findById(5);
     }
 
     @Test
