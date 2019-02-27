@@ -50,31 +50,31 @@ Returns json data about a single campaign
   * **Code:** 200 <br />
     **Content:** 
        ``` 
-                  {
+                {
                   "id":1,
                   "name":"First test Campaign",
                   "status":"PLANNED",
                   "startDate":"2019-06-18T00:00:00",
                   "endDate":"2019-07-18T00:00:00",
                   "ads":[
-                    	{
-                  	    "id":1,
-                  	    "name":"first test ad",
-                  	    "status":"PLANNED",
-                  	    "platforms":["WEB","IOS"],
-                  	    "assetUrl":"asset url",
-                  	    "campaignId":1
-                  	    },
-                  	    {
-                  	    "id":2,
-                  	    "name":"second test ad",
-                  	    "status":"PLANNED",
-                  	    "platforms":["ANDROID","IOS"],
-                  	    "assetUrl":"asset2 url",
-                  	    "campaignId":1
-                  	    }
+                    	    {
+                  	          "id":1,
+                  	           "name":"first test ad",
+                  	           "status":"PLANNED",
+                  	           "platforms":["WEB","IOS"],
+                  	           "assetUrl":"asset url",
+                  	           "campaignId":1
+                  	        },
+                  	        {
+                  	           "id":2,
+                  	           "name":"second test ad",
+                  	           "status":"PLANNED",
+                  	          "platforms":["ANDROID","IOS"],
+                  	           "assetUrl":"asset2 url",
+                  	           "campaignId":1
+                  	        }
                   	    ]
-                  }
+                }
  
 * **Error Response:**
 
@@ -120,9 +120,9 @@ Returns json data about a single campaign
   * **Code:** 404 NOT FOUND <br />
   
 
-**Show a list of campaigns**
+**Show a list of summaries**
 ----
-Returns json data about a list of campaigns
+Returns json data about a list of summaries
 * **URL**
 
     /summaries?page=1&status=0&sortField=name&sortOrder=asc
@@ -131,9 +131,11 @@ Returns json data about a list of campaigns
   `GET`
   
 *  **URL Params**
-
+    **Optional:**
+    
    `page=[integer]`<br />
    `status=[integer]`<br />
+   `name=[string]`<br />
    `sortField=[string]`<br />
    `sortOrder=[string]`<br />
 
@@ -184,62 +186,62 @@ Returns json data about a created campaign
 * **Data Params**
 
   ``` 
-                    {
+                  {
                     "id":1,
                     "name":"First test Campaign",
                     "status":"PLANNED",
                     "startDate":"2019-06-18T00:00:00",
                     "endDate":"2019-07-18T00:00:00",
                     "ads":[
-                      	{
-                    	    "id":1,
-                    	    "name":"first test ad",
-                    	    "status":"PLANNED",
-                    	    "platforms":["WEB","IOS"],
-                    	    "assetUrl":"asset url",
-                    	    "campaignId":1
+                      	    {
+                    	       "id":1,
+                    	       "name":"first test ad",
+                    	       "status":"PLANNED",
+                    	       "platforms":["WEB","IOS"],
+                    	       "assetUrl":"asset url",
+                    	       "campaignId":1
                     	    },
                     	    {
-                    	    "id":2,
-                    	    "name":"second test ad",
-                    	    "status":"PLANNED",
-                    	    "platforms":["ANDROID","IOS"],
-                    	    "assetUrl":"asset2 url",
-                    	    "campaignId":1
+                    	       "id":2,
+                    	       "name":"second test ad",
+                    	       "status":"PLANNED",
+                    	       "platforms":["ANDROID","IOS"],
+                    	       "assetUrl":"asset2 url",
+                    	        "campaignId":1
                     	    }
-                    	    ]
-                    }
+                    	  ]
+                  }
 
 * **Success Response:**
 
   * **Code:** 200 <br />
     **Content:** 
        ``` 
-                  {
+                {
                   "id":1,
                   "name":"First test Campaign",
                   "status":"PLANNED",
                   "startDate":"2019-06-18T00:00:00",
                   "endDate":"2019-07-18T00:00:00",
                   "ads":[
-                    	{
-                  	    "id":1,
-                  	    "name":"first test ad",
-                  	    "status":"PLANNED",
-                  	    "platforms":["WEB","IOS"],
-                  	    "assetUrl":"asset url",
-                  	    "campaignId":1
-                  	    },
-                  	    {
-                  	    "id":2,
-                  	    "name":"second test ad",
-                  	    "status":"PLANNED",
-                  	    "platforms":["ANDROID","IOS"],
-                  	    "assetUrl":"asset2 url",
-                  	    "campaignId":1
-                  	    }
-                  	    ]
-                  }
+                    	    {
+                  	           "id":1,
+                  	           "name":"first test ad",
+                  	           "status":"PLANNED",
+                  	            "platforms":["WEB","IOS"],
+                  	            "assetUrl":"asset url",
+                  	           "campaignId":1
+                  	        },
+                  	        {
+                  	           "id":2,
+                  	           "name":"second test ad",
+                  	           "status":"PLANNED",
+                  	           "platforms":["ANDROID","IOS"],
+                  	           "assetUrl":"asset2 url",
+                  	           "campaignId":1
+                  	        }
+                  	     ]
+                }
  
 
 **Create an ad**
@@ -259,14 +261,14 @@ Returns json data about a created ad
 * **Data Params**
 
   ``` 
-                    {
-                    "id":1,
-                    "name":"first test ad",
-                    "status":"PLANNED",
-                    "platforms":["WEB","IOS"],
-                    "assetUrl":"asset url",
-                    "campaignId":1
-                    }
+                  {
+                      "id":1,
+                      "name":"first test ad",
+                      "status":"PLANNED",
+                      "platforms":["WEB","IOS"],
+                      "assetUrl":"asset url",
+                      "campaignId":1
+                  }
 
 * **Success Response:**
 
@@ -274,12 +276,12 @@ Returns json data about a created ad
     **Content:** 
        ``` 
                   {
-                  "id":1,
-                  "name":"first test ad",
-                  "status":"PLANNED",
-                  "platforms":["WEB","IOS"],
-                  "assetUrl":"asset url",
-                  "campaignId":1
+                      "id":1,
+                      "name":"first test ad",
+                      "status":"PLANNED",
+                      "platforms":["WEB","IOS"],
+                      "assetUrl":"asset url",
+                      "campaignId":1
                   }
  
 
@@ -302,62 +304,62 @@ Returns json data about a updated campaign
 * **Data Params**
 
   ``` 
-                    {
+                  {
                     "id":1,
                     "name":"First test Campaign",
                     "status":"PLANNED",
                     "startDate":"2019-06-18T00:00:00",
                     "endDate":"2019-07-18T00:00:00",
                     "ads":[
-                      	{
-                    	    "id":1,
-                    	    "name":"first test ad",
-                    	    "status":"PLANNED",
-                    	    "platforms":["WEB","IOS"],
-                    	    "assetUrl":"asset url",
-                    	    "campaignId":1
+                        	{
+                        	    "id":1,
+                        	    "name":"first test ad",
+                        	    "status":"PLANNED",
+                        	    "platforms":["WEB","IOS"],
+                        	    "assetUrl":"asset url",
+                        	    "campaignId":1
                     	    },
                     	    {
-                    	    "id":2,
-                    	    "name":"second test ad",
-                    	    "status":"PLANNED",
-                    	    "platforms":["ANDROID","IOS"],
-                    	    "assetUrl":"asset2 url",
-                    	    "campaignId":1
+                        	    "id":2,
+                        	    "name":"second test ad",
+                           	    "status":"PLANNED",
+                        	    "platforms":["ANDROID","IOS"],
+                           	    "assetUrl":"asset2 url",
+                         	    "campaignId":1
                     	    }
-                    	    ]
-                    }
+                    	  ]
+                  }
 
 * **Success Response:**
 
   * **Code:** 200 <br />
     **Content:** 
        ``` 
-                  {
+                {
                   "id":1,
                   "name":"First test Campaign",
                   "status":"PLANNED",
                   "startDate":"2019-06-18T00:00:00",
                   "endDate":"2019-07-18T00:00:00",
                   "ads":[
-                    	{
-                  	    "id":1,
-                  	    "name":"first test ad",
-                  	    "status":"PLANNED",
-                  	    "platforms":["WEB","IOS"],
-                  	    "assetUrl":"asset url",
-                  	    "campaignId":1
-                  	    },
-                  	    {
-                  	    "id":2,
-                  	    "name":"second test ad",
-                  	    "status":"PLANNED",
-                  	    "platforms":["ANDROID","IOS"],
-                  	    "assetUrl":"asset2 url",
-                  	    "campaignId":1
-                  	    }
-                  	    ]
-                  }
+                         	{
+                         	    "id":1,
+                        	    "name":"first test ad",
+                        	    "status":"PLANNED",
+                        	    "platforms":["WEB","IOS"],
+                        	    "assetUrl":"asset url",
+                  	            "campaignId":1
+                       	    },
+                    	    {
+                        	    "id":2,
+                  	            "name":"second test ad",
+                  	            "status":"PLANNED",
+                        	    "platforms":["ANDROID","IOS"],
+                  	            "assetUrl":"asset2 url",
+                  	            "campaignId":1
+                  	        }
+                	    ]
+                }
  
 * **Error Response:**
 
@@ -383,12 +385,12 @@ Returns json data about a updated ad
 
   ``` 
                     {
-                    "id":1,
-                    "name":"first test ad",
-                    "status":"PLANNED",
-                    "platforms":["WEB","IOS"],
-                    "assetUrl":"asset url",
-                    "campaignId":1
+                        "id":1,
+                        "name":"first test ad",
+                        "status":"PLANNED",
+                        "platforms":["WEB","IOS"],
+                        "assetUrl":"asset url",
+                        "campaignId":1
                     }
 
 * **Success Response:**
@@ -397,12 +399,12 @@ Returns json data about a updated ad
     **Content:** 
        ``` 
                   {
-                  "id":1,
-                  "name":"first test ad",
-                  "status":"PLANNED",
-                  "platforms":["WEB","IOS"],
-                  "assetUrl":"asset url",
-                  "campaignId":1
+                     "id":1,
+                     "name":"first test ad",
+                     "status":"PLANNED",
+                     "platforms":["WEB","IOS"],
+                     "assetUrl":"asset url",
+                     "campaignId":1
                   }
  
 * **Error Response:**
